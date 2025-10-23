@@ -27,6 +27,8 @@ BODY{
   font-size: 2em;
   margin-bottom: 30px;
   margin-top: 5px;
+  text-align: right;
+  
 }
 .buttons{
   display: grid;
@@ -111,4 +113,8 @@ BODY{
 }
 .exception:active{
   background-color: red;
+}
+
+button:active{
+  transform: opacity(0.8);
 }

@@ -7,134 +7,48 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="calculator" style="width:220px;margin:auto;padding:20px;border:1px solid #ccc;border-radius:8px;">
-    <input type="text" id="display" style="width:100%;height:40px;font-size:1.2em;text-align:right;margin-bottom:10px;" disabled >
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px;">
-      <button onclick="append('7')">7</button>
-      <button onclick="append('8')">8</button>
-      <button onclick="append('9')">9</button>
-      <button onclick="operate('/')">÷</button>
-      <button onclick="append('4')">4</button>
-      <button onclick="append('5')">5</button>
-      <button onclick="append('6')">6</button>
-      <button onclick="operate('*')">×</button>
-      <button onclick="append('1')">1</button>
-      <button onclick="append('2')">2</button>
-      <button onclick="append('3')">3</button>
-      <button onclick="operate('-')">−</button>
-      <button onclick="append('0')">0</button>
-      <button onclick="append('.')">.</button>
-      <button onclick="calculate()">=</button>
-      <button onclick="operate('+')">+</button>
-      <button onclick="clearDisplay()" style="grid-column:span 4;background:#f44336;color:#fff;">C</button>
-    </div>
-  </div>
-  <!--My Calculator-->
-
-
   <div class="calculator-one">
     <div class="container">
-      <div class="input">
-          0
-      </div>
-      
+      <input class="input" disabled>
       <div class="buttons">
-        <button>7</button>
-      <button>8</button>
-      <button>9</button>
-      <button>/</button>
-      <button>4</button>
-      <button>5</button>
-      <button>6</button>
-      <button>X</button>
-      <button>1</button>
-      <button>2</button>
-      <button>3</button>
-      <button>-</button>
-      <button>0</button>
-      <button>.</button>
-      <button>=</button>
-      <button>+</button>
-      <button id="clear" title="clearDisplay" style="width: 200%;">C</button>
+      <button onclick="addToDisplay('7')">7</button>
+      <button onclick="addToDisplay('8')">8</button>
+      <button onclick="addToDisplay('9')">9</button>
+      <button onclick="addToDisplay('/')">/</button>
+      <button onclick="addToDisplay('4')">4</button>
+      <button onclick="addToDisplay('5')">5</button>
+      <button onclick="addToDisplay('6')">6</button>
+      <button onclick="addToDisplay('*')">x</button>
+      <button onclick="addToDisplay('1')">1</button>
+      <button onclick="addToDisplay('2')">2</button>
+      <button onclick="addToDisplay('3')">3</button>
+      <button onclick="addToDisplay('-')">-</button>
+      <button onclick="addToDisplay('0')">0</button>
+      <button onclick="addToDisplay('.')">.</button>
+      <button onclick="calculate2()">=</button>
+      <button onclick="addToDisplay('+')">+</button>
+      <button  onclick="clearDisplay()" id="clear" title="Clear results" style="width: 200%;">C</button>
       </div>
     </div>
   </div>
 
-<!--Version 2 of the calculator-->
-
-
-<div class="omor">
-  <div class="google-calculator">
-  <input type="text" class="display-two" id="display" disabled>
-  <div style="height: 30px;">
-        
-  </div>
-  <div class="calculator-two-buttons">
-    <button class="exception" style="background-color: rgb(79, 79, 209); color:rgb(180, 180, 236) ;">AC</button>
-    <button>( )</button>
-    <button>%</button>
-    <button>/</button>
-    <button onclick="append('7')">7</button>
-    <button  onclick="append('8')">8</button>
-    <button>9</button>
-    <button>X</button>
-    <button>4</button>
-    <button>5</button>
-    <button>6</button>
-    <button>-</button>
-    <button>1</button>
-    <button>2</button>
-    <button>3</button>
-    <button>+</button>
-    <button>0</button>
-    <button>.</button>
-    <button></button>
-    <button>=</button>
-  </div>
-</div>
-</div>
-
-
-
-
   <script>
-    let display = document.getElementById('display');
-    let current = '';
-    let operator = '';
-    let operand = '';
+     let display2 = document.querySelector('.input');
 
-    function append(num) {
-      current += num;
-      display.value = current;
+    function addToDisplay(number){
+      display2.value = display2.value + number;
     }
 
-    function operate(op) {
-      if (current === '') return;
-      if (operand !== '') calculate();
-      operator = op;
-      operand = current;
-      current = '';
-    }
-
-    function calculate() {
-      if (operator === '' || current === '' || operand === '') return;
-      let result;
-      try {
-        result = eval(`${parseFloat(operand)}${operator}${parseFloat(current)}`);
-      } catch {
-        result = 'Error';
+    function calculate2(){
+      try{
+        display2.value = eval(display2.value);
+      } catch (error){
+        display2.value = 'Error';
       }
-      display.value = result;
-      current = result.toString();
-      operator = '';
-      operand = '';
     }
 
-    function clearDisplay() {
-      current = '';
-      operator = '';
-      operand = '';
-      display.value = '';
+    function clearDisplay(){
+      display2.value = '';
     }
   </script>
 </body>
